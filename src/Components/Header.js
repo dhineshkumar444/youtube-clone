@@ -85,14 +85,17 @@ setOnfocus(false)
           width={70}
           onClick={toggleHamburger}
         />
-       
+     <div>
         <img
+        title="Home"
           className="max-md:hidden"
           src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-0.png"
           alt="app logo"
           width={100}
           height={20}
         />
+        </div>
+       
        
       </div>
       <div className="flex  w-2/4  relative">

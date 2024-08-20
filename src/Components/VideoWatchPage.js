@@ -81,9 +81,9 @@ const VideoWatchPage = () => {
 
   return (
     <div
-      className={`flex flex-row max-lg:flex-col h-lvh overflow-auto ${
-        !isMenuOpen ? "w-5/6" : "w-full"
-      }`}
+      className={`flex flex-row max-lg:flex-col h-lvh overflow-auto transition ease-in-out duration-500
+       w-full
+      `}
     >
       <div className="flex flex-col w-3/5 max-lg:w-full">
         <div className="w-full px-7 py-3 min-h-lvh max-sm:px-3">
