@@ -15,18 +15,19 @@ if(isMenuOpen){
   return null
 }
   return (
-    <div className={`border-2 border-gray-100 shadow-xl h-lvh overflow-y-auto px-2 pr-5 pt-5 z-10  w-1/6 max-lg:w-2/6 max-sm:w-1/2`}>
-     <Link to="/"><div className="flex items-center gap-5 py-2">
+    <div className={`border-2 border-gray-100 shadow-xl h-lvh overflow-y-auto px-2 pr-5 pt-5 z-10  w-1/6 max-lg:w-2/6 max-sm:w-full`}>
+     <Link to="/">
+     <div className="flex items-center gap-5 py-2 hover:bg-gray-100 hover:rounded-lg">
         <img src={home} width={20} />
         <p className="font-bold">Home</p>
       </div>
       </Link> 
-      <div className="flex items-center gap-5 py-2">
+      <div className="flex items-center gap-5 py-2  hover:bg-gray-100 hover:rounded-lg">
         <img src={shorts} width={20} />
         <p className="font-bold">Shorts</p>
       </div>
 
-      <div className="flex items-center gap-5 py-2">
+      <div className="flex items-center gap-5 py-2  hover:bg-gray-100 hover:rounded-lg">
         <img src={subscription} width={20} />
         <p className="font-bold">Subscriptions</p>
       </div>
@@ -50,6 +51,13 @@ if(isMenuOpen){
         })
      }
     
+      </div>
+
+      <div className="p-3">
+        <h3 className="text-lg font-bold text-gray-400">Credits</h3>
+        <p className="text-sm text-slate-400 py-2">Powered By Dhinesh Kumar S - Frontend Developer</p>
+        <p className="text-sm text-slate-400 py-2">Copyright@ dhinesh270521@gmail.com</p>
+        
       </div>
       
       

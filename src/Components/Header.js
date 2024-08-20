@@ -68,8 +68,15 @@ setSearch(val);
 setOnfocus(false)
 dispatch(searchSuggestion(search))
   }
+
+  const handleSearchButton =()=>{
+dispatch(searchSuggestion(search))
+setOnfocus(false)
+
+    
+  }
   return (
-    <div className="w-full flex justify-between items-center border-gray-100 border-b-2 px-3 shadow-lg max-h-20 relative">
+    <div className="w-full flex justify-between items-center border-gray-100 border-b-2 px-3 shadow-lg max-h-20 relative max-sm:px-1">
       <div className="flex w-1/4">
         <img className={`${!isMenuOpen?"transform rotate-90 transition duration-500":"transform rotate-0 transition duration-500"}`}
           src="https://icon-library.com/images/hamburger-menu-icon-png-white/hamburger-menu-icon-png-white-15.jpg"
@@ -98,7 +105,7 @@ dispatch(searchSuggestion(search))
             onChange={(e) => handelChange(e)}
             onFocus={() => setOnfocus(true)}
           />
-          <button className="border border-gray-400 py-2 px- max-md:px-2 md:px-5 bg-gray-100 rounded-e-full">
+          <button className="border border-gray-400 py-2 px- max-md:px-2 md:px-5 bg-gray-100 rounded-e-full" onClick={handleSearchButton}>
             🔍
           </button>
         </div>

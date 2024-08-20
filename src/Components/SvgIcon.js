@@ -4,7 +4,7 @@ const SvgIcon = ({ svg, name }) => {
 
     
     return (
-      <div className="flex items-center gap-5 py-2" >
+      <div className="flex items-center gap-5 py-2  hover:bg-gray-100 hover:rounded-lg" >
         <div 
           dangerouslySetInnerHTML={{ __html: svg }}
           

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { YOUTUBE_VIDEOS_API } from "./youtubeAPI";
+import { GOOGLE_API_KEY, YOUTUBE_VIDEOS_API } from "./youtubeAPI";
 
 
 const suggestionSearch = createSlice({
@@ -12,7 +12,7 @@ reducers:{
 state.search = YOUTUBE_VIDEOS_API;
     },
     searchSuggestion:(state, action)=>{
-        state.search=`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=${action.payload}&type=video&key=AIzaSyDAELMvnwwOopIQ3-QvaELpwe_MMRf6Su8`
+        state.search=`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=${action.payload}&type=video&key=${GOOGLE_API_KEY}`
     }
 }
 

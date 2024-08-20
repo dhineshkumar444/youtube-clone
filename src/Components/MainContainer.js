@@ -7,7 +7,7 @@ const MainContainer = () => {
   const isMenuOpen = useSelector((store)=> store.app.isMenuOpen)
 
   return (
-    <div className={!isMenuOpen?'w-5/6 max-lg:w-4/6 max-sm:w-1/2':"w-full"}>
+    <div className={!isMenuOpen?'w-5/6 max-lg:w-4/6 max-sm:hidden':"w-full"}>
         <ButtonList />
         <VideoContainer />
     </div>

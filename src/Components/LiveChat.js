@@ -18,9 +18,9 @@ const LiveChat = () => {
                     throw new Error('Failed to fetch random word');
                 }
                 const data = await response.json();
-                console.log(data[0]);
+             
                 setDataval(data[0]);
-                console.log(dataval);
+                
 
                  // Assuming API returns an array of words, take the first one
             } catch (error) {
@@ -36,7 +36,7 @@ const LiveChat = () => {
                 const data = await response.json();
                
                 setUseName(data.results[0].name);
-                console.log(useName);
+               
 
                  // Assuming API returns an array of words, take the first one
             } catch (error) {

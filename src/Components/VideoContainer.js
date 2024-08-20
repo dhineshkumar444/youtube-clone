@@ -8,7 +8,8 @@ import { useSelector } from 'react-redux';
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
 const api = useSelector((store)=> store.suggestionSearch.search);
-console.log(api);
+//const viewApi = `https://www.googleapis.com/youtube/v3/videos?key=${YOUTUBE_VIDEOS_API}&fields=items(snippet(title,tags,channelTitle,publishedAt),statistics(viewCount))&part=snippet,statistics&id=[VIDEOID]`
+//console.log(api);
   useEffect(() => {
     const getVideos = async () => {
       try {
@@ -29,9 +30,7 @@ console.log(api);
     getVideos();
   }, [api]);
 
-  useEffect(() => {
-    // Logs the videos after they have been set
-  }, [videos, api]);
+ 
 
   return (
     <div className='flex flex-wrap h-lvh overflow-y-auto'>
