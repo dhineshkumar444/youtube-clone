@@ -39,7 +39,7 @@ function App() {
   return (
     
    
-    <div className=''>
+    <div className='overflow-x-hidden'>
       <Provider store={store} >
     
       

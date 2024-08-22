@@ -60,7 +60,7 @@ const LiveChat = () => {
     }, [dataval, dispatch]);
 
     return (
-        <div className='h-5/6 border-slate-200 border-2 w-full rounded-lg overflow-auto flex flex-col-reverse'>
+        <div className='h-5/6 border-slate-200 border-2 w-full rounded-lg overflow-auto flex flex-col-reverse max-sm: my-2'>
             {chatFlows.map((chat, index) => (
                 <LiveChatMessage key={index} value={chat} />
             ))}

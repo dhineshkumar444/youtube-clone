@@ -12,6 +12,8 @@ const CommentsContainer = () => {
   const dispatch = useDispatch();
   const comments = useSelector((store) => store.comment.comments);
 
+  
+
   useEffect(() => {
     const fetchComments = async () => {
       const response = await fetch(
@@ -47,7 +49,7 @@ const CommentsContainer = () => {
   };
 
   return (
-    <div className="m-5">
+    <div className="m-5 max-sm:w-[90%] max-sm:m-auto">
      
       <div className="p-3">
         <input

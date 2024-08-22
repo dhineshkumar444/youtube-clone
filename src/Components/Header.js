@@ -58,8 +58,9 @@ const Header = () => {
   };
 
   const handleSuggestion = (val) => {
+    
     setSearch(val);
-    handleSearchButton();
+ 
   };
 
   const handleSearchButton = () => {
@@ -74,6 +75,9 @@ const Header = () => {
       handleSearchButton();
     }
   };
+  const feature =()=>{
+    alert("Feature implementation is ongoing. Please check later.")
+  }
 
   return (
     <div className="w-full flex justify-between items-center border-gray-100 border-b-2 px-3 shadow-lg max-h-20 relative max-sm:px-1">
@@ -146,6 +150,7 @@ const Header = () => {
           alt="user-logo"
           width={30}
           height={30}
+          onClick={feature}
         />
       </div>
     </div>

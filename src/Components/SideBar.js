@@ -25,6 +25,9 @@ const HandleHome = () => {
   dispatch(searchMostPopular());
   dispatch(closeMenu());
 }
+const feature =()=>{
+  alert("Feature implementation is ongoing. Please check later.")
+}
   return (
     <div className={`border-2 border-gray-100 shadow-xl h-lvh overflow-y-auto px-2 pr-5 pt-5 bg-white z-10 w-1/6 max-lg:w-2/6 max-sm:w-full fixed top-0 left-0 transform ${
         !isMenuOpen ? "translate-x-0" : "-translate-x-full"
@@ -38,12 +41,12 @@ const HandleHome = () => {
       </Link> 
       <div className="flex items-center gap-5 py-2  hover:bg-gray-100 hover:rounded-lg">
         <img src={shorts} width={20} />
-        <p className="font-bold">Shorts</p>
+        <p className="font-bold"  onClick={feature}>Shorts</p>
       </div>
 
       <div className="flex items-center gap-5 py-2  hover:bg-gray-100 hover:rounded-lg">
         <img src={subscription} width={20} />
-        <p className="font-bold">Subscriptions</p>
+        <p className="font-bold"  onClick={feature}>Subscriptions</p>
       </div>
 
       <div className=" border-b-2 border-gray-100 pb-4">

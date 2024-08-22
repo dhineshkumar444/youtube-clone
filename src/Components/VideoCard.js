@@ -33,9 +33,9 @@ m=viewState;
    
     useEffect(()=>{
       const viewData = async() => {
-        const viewApi = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyAgK5HCxq71mGS9qXsITe_bJBpSGmkTHJ4&fields=items(snippet(title,tags,channelTitle,publishedAt),statistics(viewCount))&part=snippet,statistics&id=${videoId}`)
+        const viewApi = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyARF3w7kg0nOpBiMiFyimMr7CrmIE6vdXY&fields=items(snippet(title,tags,channelTitle,publishedAt),statistics(viewCount))&part=snippet,statistics&id=${videoId}`)
       const JsonviewApi = await viewApi.json();
-      console.log(JsonviewApi.items[0].statistics.viewCount)
+      console.log(JsonviewApi.items)
       setViewState(JsonviewApi.items[0].statistics.viewCount);
       }
       viewData();
@@ -47,7 +47,7 @@ m=viewState;
   return (
     <div className="w-1/4 max-lg:w-1/3 max-md:w-1/2 max-sm:w-full p-2 min-h-60 ">
         <Link to={`/watch?v=${videoId}`} >
-    <div className="shadow-xl rounded-lg  h-full hover:border-2 hover:border-gray-600 hover:scale-105 ease duration-200">
+    <div className="shadow-2xl rounded-lg  h-full hover:border-2 hover:border-gray-600 hover:scale-105 ease duration-200">
       <div className="w-full">
         <img src={snippet?.thumbnails?.medium.url} className="rounded-t-lg w-full" alt="Video thumbnail" />
       </div>

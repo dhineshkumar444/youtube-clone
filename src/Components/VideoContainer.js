@@ -33,7 +33,7 @@ const api = useSelector((store)=> store.suggestionSearch.search);
  
 
   return (
-    <div className='flex flex-wrap h-lvh overflow-y-auto'>
+    <div className='flex flex-wrap h-lvh overflow-y-auto max-sm:p-2'>
     
       {videos.map((video) => (
         // <Link to={`/watch?${video.id}`} key={video.id}>
