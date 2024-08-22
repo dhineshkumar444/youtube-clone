@@ -5,7 +5,7 @@ const Comment = ({value}) => {
     <div className='bg-gray-200 p-2 m-2 rounded-lg flex jus items-center gap-5 w-full max-md:w-full'>
         <img className='rounded-full' src={value.authorProfileImageUrl?value.authorProfileImageUrl:value.snippet?.topLevelComment?.snippet?.authorProfileImageUrl} alt={"textDisplay"} width={30} />
          <div>
-           <p className='font-bold'>{value.authorDisplayName?value.authorDisplayName:value.snippet?.topLevelComment?.snippet?.authorDisplayName}</p>
+           <p className='font-bold flex flex-wrap'>{value.authorDisplayName?value.authorDisplayName:value.snippet?.topLevelComment?.snippet?.authorDisplayName}</p>
 
            <p>{value.textDisplay?value.textDisplay:value.snippet?.topLevelComment?.snippet?.textDisplay}</p>
            <div className='flex gap-5 p-3'>

@@ -48,7 +48,7 @@ const CommentsContainer = () => {
 
   return (
     <div className="m-5">
-      <h1 className="font-bold text-lg">Comments</h1>
+     
       <div className="p-3">
         <input
           className="w-full focus:border-b-2 p-2  focus:border-blue-500 focus:outline-none"

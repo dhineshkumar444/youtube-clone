@@ -9,16 +9,21 @@ import store from './utils/store';
 import {BrowserRouter, createBrowserRouter, RouterProvider} from "react-router-dom"
 import VideoWatchPage from './Components/VideoWatchPage';
 import MainContainer from './Components/MainContainer';
+import SearchPage from './Components/SearchPage';
 
 
-export const clickContext = createContext();
+
 
 const appRouter = createBrowserRouter([{
   path:"/",
-  element:<Body />,
+  element:(<><Header /><Body /></>),
   children:[{
     path:"/watch",
     element:<VideoWatchPage />
+  },
+  {
+    path:"/search",
+    element:<SearchPage />
   },
   {
     path:"/",
@@ -36,10 +41,13 @@ function App() {
    
     <div className=''>
       <Provider store={store} >
-     
-      <Header />
+    
       
-    <RouterProvider router={appRouter} />
+      
+      <RouterProvider router={appRouter}> 
+   
+      </RouterProvider>
+      
       </Provider >
      
     </div>

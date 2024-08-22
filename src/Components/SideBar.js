@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import store from "../utils/store";
 import { closeMenu } from "../utils/appSlice";
+import { searchMostPopular } from "../utils/suggestionSearch";
 
 const SideBar = () => {
  const dispatch = useDispatch();
@@ -20,15 +21,19 @@ const SideBar = () => {
 if(isMenuOpen){
   return null
 }
+const HandleHome = () => {
+  dispatch(searchMostPopular());
+  dispatch(closeMenu());
+}
   return (
     <div className={`border-2 border-gray-100 shadow-xl h-lvh overflow-y-auto px-2 pr-5 pt-5 bg-white z-10 w-1/6 max-lg:w-2/6 max-sm:w-full fixed top-0 left-0 transform ${
         !isMenuOpen ? "translate-x-0" : "-translate-x-full"
-      } transition-transform duration-300 ease-in-out`}>
+      } transition-transform duration-300 ease-in-out`} >
         <p className="text-end cursor-pointer" onClick={handleClose}>Close</p>
      <Link to="/">
      <div className="flex items-center gap-5 py-2 hover:bg-gray-100 hover:rounded-lg">
         <img src={home} width={20} />
-        <p className="font-bold">Home</p>
+        <p className="font-bold" onClick={HandleHome}>Home</p>
       </div>
       </Link> 
       <div className="flex items-center gap-5 py-2  hover:bg-gray-100 hover:rounded-lg">

@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMenu } from "../utils/appSlice";
+import { closeMenu, toggleMenu } from "../utils/appSlice";
 import { cacheResults } from "../utils/searchSlice";
-import { Link } from "react-router-dom";
-import { searchSuggestion } from "../utils/suggestionSearch";
-
-
-
+import { Link, useNavigate } from "react-router-dom";
+import { searchMostPopular, searchSuggestion } from "../utils/suggestionSearch";
+import { updateSearch } from "../utils/searchResultSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const isMenuOpen  = useSelector((store)=> store.app.isMenuOpen)
+  const navigate = useNavigate();
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
   const toggleHamburger = () => {
-  
     dispatch(toggleMenu());
   };
+
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [Onfocus, setOnfocus] = useState(false);
-  const searchCache = useSelector((store)=> store.search)
-const cache = searchCache[search]
+  const [onFocus, setOnFocus] = useState(false);
+  const searchCache = useSelector((store) => store.search);
+  const cache = searchCache[search];
+
   useEffect(() => {
     const fetchSearchSuggestions = async () => {
       try {
@@ -30,27 +30,21 @@ const cache = searchCache[search]
         if (response.ok) {
           const data = await response.json();
           setSuggestions(data[1]);
-          dispatch(cacheResults({[search]:data[1]}))
-          
-        } else {
-          
+          dispatch(cacheResults({ [search]: data[1] }));
         }
       } catch (error) {
-        
+        console.error("Error fetching search suggestions:", error);
       }
     };
 
     if (search) {
-      const makeApiCall = setTimeout(() =>{
-        if(cache){
+      const makeApiCall = setTimeout(() => {
+        if (cache) {
           setSuggestions(cache);
-        }
-        else{
+        } else {
           fetchSearchSuggestions();
-          
         }
-        
-      } , 200);
+      }, 200);
       return () => {
         clearTimeout(makeApiCall);
       };
@@ -59,66 +53,87 @@ const cache = searchCache[search]
     }
   }, [search]);
 
-  const handelChange = (e) => {
+  const handleChange = (e) => {
     setSearch(e.target.value);
-    console.log(search);
   };
-  const handleSuggestion = (val)=>{
-setSearch(val);
-setOnfocus(false)
-dispatch(searchSuggestion(search))
-  }
 
-  const handleSearchButton =()=>{
-dispatch(searchSuggestion(search))
-setOnfocus(false)
+  const handleSuggestion = (val) => {
+    setSearch(val);
+    handleSearchButton();
+  };
 
-    
-  }
+  const handleSearchButton = () => {
+    dispatch(searchSuggestion(search));
+    dispatch(updateSearch(search));
+    setOnFocus(false);
+    navigate(`/search?search_query=${search.split(" ").join("+")}`);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && search) {
+      handleSearchButton();
+    }
+  };
+
   return (
     <div className="w-full flex justify-between items-center border-gray-100 border-b-2 px-3 shadow-lg max-h-20 relative max-sm:px-1">
       <div className="flex w-1/4">
-        <img className={`${!isMenuOpen?"transform rotate-90 transition duration-500":"transform rotate-0 transition duration-500"}`}
+        <img
+          className={`${
+            !isMenuOpen
+              ? "transform rotate-90 transition duration-500"
+              : "transform rotate-0 transition duration-500"
+          }`}
           src="https://icon-library.com/images/hamburger-menu-icon-png-white/hamburger-menu-icon-png-white-15.jpg"
           alt="hamburger Icon"
           height={30}
           width={70}
           onClick={toggleHamburger}
         />
-     <div>
-        <img
-        title="Home"
-          className="max-md:hidden"
-          src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-0.png"
-          alt="app logo"
-          width={100}
-          height={20}
-        />
+        <div>
+          <Link to={"/"}>
+            <img
+              title="Home"
+              className="max-md:hidden"
+              src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-0.png"
+              alt="app logo"
+              width={100}
+              height={20}
+              onClick={() => dispatch(searchMostPopular())}
+            />
+          </Link>
         </div>
-       
-       
       </div>
-      <div className="flex  w-2/4  relative">
-        <div className="flex justify-center relative w-3/4">
+      <div className="flex w-2/4 relative">
+        <div className="flex justify-center relative w-4/5 max-lsm:w-full">
           <input
             type="text"
             className="outline-none border w-full border-gray-400 p-2 rounded-s-full"
             placeholder="Search Videos..."
             value={search}
-            onChange={(e) => handelChange(e)}
-            onFocus={() => setOnfocus(true)}
+            onChange={(e) => handleChange(e)}
+            onFocus={() => setOnFocus(true)}
+            onKeyDown={(e) => handleKeyDown(e)}
           />
-          <button className="border border-gray-400 py-2 px- max-md:px-2 md:px-5 bg-gray-100 rounded-e-full" onClick={handleSearchButton}>
-            🔍
-          </button>
+       
+            <button
+              className={`border border-gray-400 py-2 px- max-md:px-2 md:px-5 bg-gray-100 rounded-e-full ${
+                search ? "cursor-pointer" : "cursor-not-allowed"
+              }`}
+              onClick={handleSearchButton}
+            >
+              🔍
+            </button>
+    
         </div>
-        {suggestions.length > 0 && Onfocus && (
-          <div className="absolute bg-white border border-gray-300 w-full mt-1 top-10 rounded-lg shadow-lg z-10">
+        {suggestions.length > 0 && onFocus && (
+          <div className="absolute bg-white border border-gray-300 w-4/5 max-lsm:w-full mt-1 top-10 rounded-lg shadow-lg z-10">
             {suggestions.map((val, index) => (
               <p
                 key={index}
                 className="px-4 py-2 cursor-pointer hover:bg-gray-100"
-              onClick={()=>handleSuggestion(val)} >
+                onClick={() => handleSuggestion(val)}
+              >
                 {val}
               </p>
             ))}
@@ -129,8 +144,8 @@ setOnfocus(false)
         <img
           src="https://tse3.mm.bing.net/th?id=OIP.w2McZSq-EYWxh02iSvC3xwHaHa&pid=Api&P=0&"
           alt="user-logo"
-          width={50}
-          height={50}
+          width={30}
+          height={30}
         />
       </div>
     </div>
