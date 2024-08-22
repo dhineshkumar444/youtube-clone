@@ -46,10 +46,10 @@ const feature =()=>{
 
       <div className="flex items-center gap-5 py-2  hover:bg-gray-100 hover:rounded-lg">
         <img src={subscription} width={20} />
-        <p className="font-bold"  onClick={feature}>Subscriptions</p>
+        <p className="font-bold" >Subscriptions</p>
       </div>
 
-      <div className=" border-b-2 border-gray-100 pb-4">
+      {/* <div className=" border-b-2 border-gray-100 pb-4">
         <h1 className="font-bold my-2"></h1>
       
      {
@@ -68,11 +68,11 @@ const feature =()=>{
         })
      }
     
-      </div>
+      </div> */}
 
       <div className="p-3">
         <h3 className="text-lg font-bold text-gray-400">Credits</h3>
-        <p className="text-sm text-slate-400 py-2">Powered By Dhinesh Kumar S - Frontend Developer</p>
+        <p className="text-sm text-slate-400 py-2">Powered By Dhinesh Kumar S - Website Enthusiast</p>
         <p className="text-sm text-slate-400 py-2">Copyright@ dhinesh270521@gmail.com</p>
         
       </div>
