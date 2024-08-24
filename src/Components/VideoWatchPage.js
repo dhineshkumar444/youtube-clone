@@ -124,7 +124,7 @@ const VideoWatchPage = () => {
             <div className="flex justify-center items-center">
             <iframe
               className=" w-full rounded-t-lg h-[80vh] max-sm:h-[50vh] "
-              src={`https://www.youtube.com/embed/${dynamicId}`}
+              src={`https://www.youtube.com/embed/${dynamicId}?autoplay=1`}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -213,7 +213,7 @@ const VideoWatchPage = () => {
             </div>
             <LiveChat />
             <form
-              className="w-full border-2 border-slate-300 rounded-lg p-2"
+              className="w-full  rounded-lg p-3 m-2"
               onSubmit={(e) => {
                 e.preventDefault();
                 if (liveComment.trim() !== "") {
@@ -228,12 +228,13 @@ const VideoWatchPage = () => {
               }}
             >
               <input
-                className="w-3/5 outline-none border-r-2 border-slate-400 rounded-s-lg"
+                className="w-3/5 focus:border-b-2 p-2  focus:border-blue-500 focus:outline-none"
                 type="text"
+                placeholder="Add comment in live..."
                 onChange={(e) => setLiveComment(e.target.value)}
                 value={liveComment}
               />
-              <button className="w-2/5">Add Comment</button>
+              <button className="w-2/5 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition duration-200">Add Comment</button>
             </form>
           </div>
         ) : (
